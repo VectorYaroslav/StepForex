@@ -1,0 +1,12 @@
+*{
+    margin: 0;
+    padding: o;
+    border: 0;
+}
+html, body .content{
+    min-height: 100%;
+}
+.footer{
+    height: 50px;
+    margin: -50px 0 0 0;
+}
