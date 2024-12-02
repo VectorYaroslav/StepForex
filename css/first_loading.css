@@ -10,18 +10,33 @@
     .first_loading .steps {
         position: absolute;
         top: 0;
-        left: o;
+        left: 0;
         width: 100%;
         height: 100%;
     }
-    
+        .first_loading .steps .middle_line {
+            position: absolute;
+            top: 49.5%;
+            left: 0;
+            width: 0;
+            height: 1%;
+            background-color: #ffffff;
+            transition: 2s ease width;
+        }
+        .first_loading .steps .middle_line.load {
+            width: 100%;
+        }
         .first_loading .steps .top,
         .first_loading .steps .bottom {
             position: absolute;
             width: 100%;
+            height: 50%;
+            transition: 2s ease height;
+        }
+        .first_loading .steps .top.line,
+        .first_loading .steps .bottom.line {
             height: 48%;
         }
-
         .first_loading .steps .top {
             left: 0;
         }
@@ -36,9 +51,11 @@
                 width: 25%;
                 height: 100%;
                 background-color: black;
-                transition: 5s ease height;
+                transition: 5s ease height, 10s ease background-color;
             }
-
+            .first_loading .steps .top > div.step {
+                background-color: #ffffff;
+            }
             .first_loading .steps .top,
             .first_loading .steps .top > div {
                 top: 0;
@@ -65,9 +82,9 @@
             }
 
             .first_loading .steps .top > div.step:first-child {
-                height: 110%
+                height: 110%;
             }
-
+            
             .first_loading .steps .top > div.step:nth-child(2) {
                 height: 85%
             }
@@ -80,6 +97,10 @@
                 height: 35%
             }
 
+            .first_loading .steps .bottom > div:first-child {
+                width: 30%;
+                left: -5%;
+            }
 
             .first_loading .steps .bottom > div.step:first-child {
                 height: 90%
@@ -102,14 +123,16 @@
                     width: 100% ;
                     height: 100%;
                     color: white;
-                    font-size: 72px;
+                    font-family: "Impact", sans-serif;
+                    font-size: 96px;
                     font-weight: bolder;
                     text-align: center;
                     opacity: 0;
-                    transition: 1s ease opacity;
+                    transition: 1s ease opacity, 10s ease color;
                 }
                 .first_loading .steps .top > div.step table{
                     opacity: 1;
+                    color: rgb(0, 0, 0);
                 }
                 .first_loading .steps .top > div.step:first-child table{
                     transition-delay: 1s;
@@ -127,3 +150,9 @@
                     .first_loading .steps .bottom > div > table td {
                         vertical-align: bottom;
                     }
+    .first_loading .forex_graph{
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+   }
+                    

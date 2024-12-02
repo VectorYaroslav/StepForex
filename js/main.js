@@ -1,1 +1,7 @@
-var oneSecond = 1000;
+document.addEventListener('DOMContentLoaded', function () {
+    
+    oneSecond = 1000;
+
+    first_loading();
+
+});
