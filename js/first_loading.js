@@ -2,89 +2,82 @@
 
 function first_loading() {
 
-    /***** ADDING TAGS *****/
-
-    
-    var firstLoadingDiv = document.createElement("div")
-    firstLoadingDiv.classList.add("first_loading")
+    /********** ADDING TAGS **********/
+    var firstLoading = document.createElement("div"); firstLoading.classList.add("first_loading")               // Create MAIN DIV
 
 
     /***** STEPS *****/
+    var steps = document.createElement("div"); steps.classList.add("steps")                                     // Create DIV "STEPS" for all steps
 
-    var firstLoadingStepsDiv = document.createElement("div")
-    firstLoadingStepsDiv.classList.add("steps")
+    var middleLine = document.createElement("div"); middleLine.classList.add("middle_line")                     // Create WHITE "LOADING" MIDDLE LINE (First animation)
+    var stepsTop = document.createElement("div"); stepsTop.classList.add("top")                                 // Create DIV for all top steps 
+    var stepsBottom = document.createElement("div"); stepsBottom.classList.add("bottom");                       // Create DIV for all bottom steps 
 
-    var firstLoadingStepsMiddleLineDiv = document.createElement("div")
-    firstLoadingStepsMiddleLineDiv.classList.add("middle_line")
-
-    var firstLoadingStepsTopDiv = document.createElement("div")
-    firstLoadingStepsTopDiv.classList.add("top")
-    var firstLoadingStepsBottomDiv = document.createElement("div")
-    firstLoadingStepsBottomDiv.classList.add("bottom");
-
-    firstLoadingStepsDiv.appendChild(firstLoadingStepsTopDiv)
-    firstLoadingStepsDiv.appendChild(firstLoadingStepsMiddleLineDiv)
-    firstLoadingStepsDiv.appendChild(firstLoadingStepsBottomDiv)
+    
+    steps.appendChild(stepsTop); steps.appendChild(middleLine); steps.appendChild(stepsBottom)                  // Adding to STEPS DIV
 
 
-    firstLoadingDiv.appendChild(firstLoadingStepsDiv)
+    firstLoading.appendChild(steps)                                                                             // Adding to STEPS to MAIN DIV
 
-
+                                                                                                                // Create Steps
     for (var i = 0; i < 4; i++) {
         var div = document.createElement("div")
         var table = document.createElement("table")
         var tr = document.createElement("tr")
         var td = document.createElement("td")
+                                                                                                                // Add letters "FOREX"
         if (i == 0) td.innerText = "S"
         if (i == 1) td.innerText = "T"
         if (i == 2) td.innerText = "E"
         if (i == 3) td.innerText = "P"
-
+                                                                                                                // Add letters "FOREX" (END)
         tr.appendChild(td)
         table.appendChild(tr)
         div.appendChild(table)
 
-        firstLoadingStepsTopDiv.appendChild(div)
+        stepsTop.appendChild(div)
 
-        firstLoadingStepsBottomDiv.appendChild(document.createElement("div"))
+        stepsBottom.appendChild(document.createElement("div"))
     }
-    
+                                                                                                                // Create Steps(END)
+
     /***** STEPS(END) *****/
 
     /***** FOREX GRAPH *****/
+    var forexGraph = document.createElement("img"); forexGraph.classList.add("forex_graph");                    // Add FOREX GRAPH image
+    forexGraph.src = "img/forex_graph.png"
+    firstLoading.appendChild(forexGraph)
 
-    var forexGraphDiv = document.createElement("img")
-    forexGraphDiv.classList.add("forex_graph")
-    forexGraphDiv.src = "img/forex_graph.png"
-    firstLoadingDiv.appendChild(forexGraphDiv)
-
+    var forexGraphShow = document.createElement("div"); forexGraphShow.classList.add("forex_graph_show")        // Create DIV for slowly show FOREX GRAPH image
+    firstLoading.appendChild(forexGraphShow)
     /***** FOREX GRAPH(END) *****/
 
-    document.body.appendChild(firstLoadingDiv)
-
-    /***** ADDING TAGS(END) *****/
+    document.body.appendChild(firstLoading)
+    /*************** ADDING TAGS(END) ***************/
 
 
     /***** ANIMATION *****/
+    var className__middleLineLoad = "load"
+    var wait__middleLineLoading = 0
+    var wait__middleLineHide = 3 * oneSecond
 
-    var classNameMiddleLineLoad = "load"
-    var middleLineAnimWait = 0
-    var middleLineHide = 3 * oneSecond
+    var className__forexGraphLoad = "load"
+    var wait__forexGraphShow = 3 * oneSecond
 
-    var classNameStepParentDiv = "line"
-    var heightLinesAnimWait = 2 * oneSecond
+    var className__stepParent = "line"
+    var wait__heightLines = 2 * oneSecond
 
-    var classNameStepDiv = "step"
-    var heightStepsAnimWait = 4 * oneSecond
+    var className__step = "step"
+    var wait_heightSteps = 4 * oneSecond
 
 
-    var linesArr = [firstLoadingStepsTopDiv, firstLoadingStepsBottomDiv]
+    var linesArr = [stepsTop, stepsBottom]
 
-    addClass(firstLoadingStepsMiddleLineDiv, classNameMiddleLineLoad, middleLineAnimWait)
-    addClass(linesArr, classNameStepParentDiv, heightLinesAnimWait)
+    addClass(middleLine, className__middleLineLoad, wait__middleLineLoading)
+    addClass(linesArr, className__stepParent, wait__heightLines)
 
-    addClassToAllChild(firstLoadingStepsTopDiv, classNameStepDiv, heightStepsAnimWait)
-    addClassToAllChild(firstLoadingStepsBottomDiv, classNameStepDiv, heightStepsAnimWait)
+    addClassToAllChild(stepsTop, className__step, wait_heightSteps)
+    addClassToAllChild(stepsBottom, className__step, wait_heightSteps)
 
     function addClass(els, className, wait) {
         setTimeout(() => {
@@ -112,9 +105,12 @@ function first_loading() {
     }
 
     setTimeout(() => {
-        firstLoadingStepsMiddleLineDiv.classList.remove(classNameMiddleLineLoad);
-    }, middleLineHide)
+        middleLine.classList.remove(className__middleLineLoad)
+    }, wait__middleLineHide)
 
+    setTimeout(() => {
+        forexGraphShow.classList.add(className__forexGraphLoad)
+    }, wait__forexGraphShow)
+        
 }
-
 /***** ANIMATION(END) *****/
