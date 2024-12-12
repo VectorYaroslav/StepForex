@@ -150,35 +150,4 @@
                     .first_loading .steps .bottom > div > table td {
                         vertical-align: bottom;
                     }
-    .first_loading .forex_graph,
-    .first_loading .forex_graph_show{
-        position: absolute;
-        width: 100%;
-        bottom: 0;
-        right: 0;
-        height: 45%;
-        opacity: 0.7;
-   } 
-
-   .first_loading .forex_graph_show{
-        transition: 10s ease width;
-        background-color: black;
-        z-index: 999;
-        opacity: 1;
-    }
-    .first_loading .forex_graph_show.load{
-        width: 0;
-    }
-
-    .first_loading .forex_graph_right_part_hide{
-        position: absolute;
-        width: 100%;
-        bottom: 0;
-        right: 0;
-        height: 45%;
-        opacity: 0;
-        background-image: linear-gradient(90%, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
-    }
-    .first_loading .forex_graph_right_part_hide.load{
-        opacity: 1;
-    }
+   
