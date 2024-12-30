@@ -3,7 +3,7 @@
     padding: o;
     border: 0;
 }
-html, body .content{
+html, body, .content{
     min-height: 100%;
 }
 .footer{

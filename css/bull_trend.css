@@ -1,0 +1,31 @@
+.candle{
+    position: absolute;
+    width: 6px;
+    border: 2px solid;
+}
+.candle.up{
+    border-color: #023500;
+    background-color: rgb(96, 255, 91);
+}
+.candle.down{
+    border-color: #410000;
+    background-color: rgb(255, 42, 42);
+}
+    .candle .needle{
+        position: absolute;
+        width: 2px;
+        left: 2px;
+        opacity: 0.5;
+    }
+        .candle.up .needle{
+            background-color: #023500;
+        }
+        .candle.down .needle{
+            background-color: #410000;
+        }
+        .candle .needle.top{
+            bottom: 100%; 
+        }
+        .candle .needle.bottom{
+            top: 100%; 
+        }
