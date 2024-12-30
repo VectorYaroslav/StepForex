@@ -2,59 +2,55 @@
 
 function first_loading() {
 
-    /********** ADDING TAGS **********/
+    /********** Adding tags **********/
     var firstLoading = document.createElement("div"); firstLoading.classList.add("first_loading")               // Create MAIN DIV
 
 
-    /***** STEPS *****/
+    /********** Steps **********/
     var steps = document.createElement("div"); steps.classList.add("steps")                                     // Create DIV "STEPS" for all steps
 
     var middleLine = document.createElement("div"); middleLine.classList.add("middle_line")                     // Create WHITE "LOADING" MIDDLE LINE (First animation)
     var stepsTop = document.createElement("div"); stepsTop.classList.add("top")                                 // Create DIV for all top steps 
     var stepsBottom = document.createElement("div"); stepsBottom.classList.add("bottom");                       // Create DIV for all bottom steps 
-
-    
     steps.appendChild(stepsTop); steps.appendChild(middleLine); steps.appendChild(stepsBottom)                  // Adding to STEPS DIV
-
-
     firstLoading.appendChild(steps)                                                                             // Adding to STEPS to MAIN DIV
 
-                                                                                                                // Create Steps
+    /********** Create Steps **********/
     for (var i = 0; i < 4; i++) {
         var div = document.createElement("div")
         var table = document.createElement("table")
         var tr = document.createElement("tr")
         var td = document.createElement("td")
-                                                                                                                // Add letters "STEP"
+
+
+        /********** Add letters "STEP" **********/
         if (i == 0) td.innerText = "S"
         if (i == 1) td.innerText = "T"
         if (i == 2) td.innerText = "E"
         if (i == 3) td.innerText = "P"
-                                                                                                                // Add letters "STEP" (END)
+        /********** Add letters "STEP" (END) **********/
+
+
         tr.appendChild(td)
         table.appendChild(tr)
         div.appendChild(table)
-
         stepsTop.appendChild(div)
-
         stepsBottom.appendChild(document.createElement("div"))
     }
-                                                                                                                // Create Steps(END)
+    /********** Create Steps(END) **********/
 
-    /***** STEPS(END) *****/
+    /********** Steps(END) **********/
 
     document.body.appendChild(firstLoading)
-    /*************** ADDING TAGS(END) ***************/
+    /*************** Adding tags(END) ***************/
 
 
-    /***** ANIMATION *****/
+    /***** Animation *****/
     var linesArr = [stepsTop, stepsBottom]
 
     addClass(middleLine, "load", 0);                                                                               // Start "Middle line" animation
-    setTimeout(() => {middleLine.classList.remove("load")}, 3*oneSecond)                                           // End "Middle line" animation
-
+    setTimeout(() => {middleLine.classList.remove("load")}, 3*oneSecond)                                           // End "Middle line" animation after 3 seconds
     addClass(linesArr, "line", 2 * oneSecond)
-
     addClassToAllChild(stepsTop, "step", 4 * oneSecond)
     addClassToAllChild(stepsBottom, "step", 4 * oneSecond)
 
@@ -82,7 +78,6 @@ function first_loading() {
                         var child = el.children[i];
                         child.classList.add(className);
                     }
-
                     els[i].classList.add(className);
                 }
             } else {
@@ -92,8 +87,7 @@ function first_loading() {
                     child.classList.add(className);
                 }
             }
-
         }, wait)
     }
+    /***** Animation(END) *****/
 }
-/***** ANIMATION(END) *****/

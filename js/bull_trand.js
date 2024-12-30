@@ -24,75 +24,50 @@ function trand(){
     current_candle_Y_max = first_candle_Y_max                                                                   // Set current candle Y max (top) point
     current_candle_Y_min = first_candle_Y_min                                                                   // Set current candle Y min (bottom) point
     current_candle_X = first_candle_X                                                                           // Set current candle X min (left) point
-    current_candle_bottom = 0                                                                                   // Set current candle bottom point
+    current_candle_bottom = getRandomNumber(current_candle_Y_min, current_candle_Y_max)                         // Set current candle bottom point
 
-    for(var i=1; i<candles_count; i++){                                                                         
+    for(var i=1; i<candles_count; i++){    
 
-        let candle = createElementWithClass("div", ["candle"])
-        current_candle_Y_max = current_candle_Y_max + candle_vertical_step
-        current_candle_Y_min = current_candle_Y_min + candle_vertical_step
+        let candle = createElementWithClass("div", ["candle"])                                                          // Create current candle
+        current_candle_Y_max = current_candle_Y_max + candle_vertical_step                                              // Set max top point for current candle
+        current_candle_Y_min = current_candle_Y_min + candle_vertical_step                                              // Set max top point for current candle
 
-        needle_top = createElementWithClass("div", ["needle", "top"])
-        needle_bottom = createElementWithClass("div", ["needle", "bottom"])
+        needle_top = createElementWithClass("div", ["needle", "top"])                                                   // Create top needle for current candle
+        needle_bottom = createElementWithClass("div", ["needle", "bottom"])                                             // Create bottom needle for current candle
 
-        if(i == 1){
-            current_candle_bottom =  getRandomNumber(current_candle_Y_min, current_candle_Y_max)
-            candle.style.bottom = current_candle_bottom
-            const candle_height_period = current_candle_Y_max - current_candle_bottom
-            current_candle_height = getRandomNumber(1, candle_height_period)
-            candle.style.height = current_candle_height
-            if(Math.random() < 0.5){
-                candle.classList.add ("up")
-                current_candle_bottom = current_candle_bottom + current_candle_height
+        /********** Candle UP **********/
+        if(Math.random() < 0.5){
+            current_candle_height = getRandomNumber(1, current_candle_Y_max - current_candle_bottom)                    // Set random height variable for current candle
 
-                const needle_top_height_period = current_candle_Y_max - current_candle_bottom - current_candle_height
-                needle_top.style.height = getRandomNumber(1, needle_top_height_period)
+            candle.classList.add ("up")                                                                                 // Set class for current candle
+            candle.style.height = current_candle_height                                                                 // Set height for current candle                                                        
+            candle.style.bottom = current_candle_bottom                                                                 // Set bottom point for current candle
+            
+            needle_top.style.height = getRandomNumber(1, current_candle_Y_max - current_candle_bottom)                  // Set height for top needle
+            needle_bottom.style.height = getRandomNumber(1, current_candle_bottom - current_candle_Y_min)               // Set height for bottom needle
 
-                const needle_bottom_height_period = current_candle_bottom - current_candle_Y_min
-                needle_bottom.style.height = getRandomNumber(1, needle_bottom_height_period)
-            }else{
-                candle.classList.add ("down")
-                const needle_top_height_period = current_candle_Y_max - current_candle_bottom
-                needle_top.style.height = getRandomNumber(1, needle_top_height_period)
+            current_candle_bottom = current_candle_bottom + current_candle_height                                       // Set bottom point for next candle
+        /********** Candle UP(END) **********/
 
-                const needle_bottom_height_period = current_candle_bottom - current_candle_height - current_candle_Y_min
-                needle_bottom.style.height = getRandomNumber(1, needle_bottom_height_period)
-            }
+        /********** Candle DOWN **********/
         }else{
-            if(Math.random() < 0.5){
-                candle.classList.add ("up")
-                candle.style.bottom = current_candle_bottom
-                const candle_height_period = current_candle_Y_max - current_candle_bottom
-                current_candle_height = getRandomNumber(1, candle_height_period)
-                candle.style.height = current_candle_height
-                current_candle_bottom = current_candle_bottom + current_candle_height
+            current_candle_height = getRandomNumber(1, current_candle_bottom - current_candle_Y_min)                    // Set random height variable for current candle
 
-                const needle_top_height_period = current_candle_Y_max - current_candle_bottom
-                needle_top.style.height = getRandomNumber(1, needle_top_height_period)
-
-                const needle_bottom_height_period = current_candle_bottom - current_candle_Y_min
-                needle_bottom.style.height = getRandomNumber(1, needle_bottom_height_period)
-            }else{
-                candle.classList.add ("down")
-                const candle_height_period = current_candle_bottom - current_candle_Y_min
-                current_candle_height = getRandomNumber(1, candle_height_period)
-                candle.style.height = current_candle_height
-                candle.style.bottom = current_candle_bottom - current_candle_height
-                current_candle_bottom = current_candle_bottom - current_candle_height
-
-                const needle_top_height_period = current_candle_Y_max - current_candle_bottom
-                needle_top.style.height = getRandomNumber(1, needle_top_height_period)
-
-                const needle_bottom_height_period = current_candle_bottom - current_candle_Y_min
-                needle_bottom.style.height = getRandomNumber(1, needle_bottom_height_period)
-            }
+            candle.classList.add ("down")                                                                               // Set class for current candle
+            candle.style.height = current_candle_height                                                                 // Set height for current candle
+            candle.style.bottom = current_candle_bottom - current_candle_height                                         // Set bottom point for current candle
+            current_candle_bottom = current_candle_bottom - current_candle_height                                       // Set bottom point for next candle
+            
+            needle_top.style.height = getRandomNumber(1, current_candle_Y_max - current_candle_bottom)                  // Set height for top needle
+            needle_bottom.style.height = getRandomNumber(1, current_candle_bottom - current_candle_Y_min)               // Set height for bottom needle
         }
+        /********** Candle DOWN(END) **********/
         
-        candle = appendElements(candle, [needle_top, needle_bottom])
-        current_candle_X = current_candle_X + candle_width
-        candle.style.left = current_candle_X
+        candle = appendElements(candle, [needle_top, needle_bottom])                                // Add needles into current candle
+        current_candle_X = current_candle_X + candle_width                                          
+        candle.style.left = current_candle_X                                                        // Set left point for current candle
 
-        body.append(candle)
+        body.append(candle)                                                                         // Add final candle into document body
     }
     /********** Create candles(END) **********/
 
